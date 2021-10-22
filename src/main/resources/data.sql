@@ -1,3 +1,4 @@
+
 --
 -- patients table data
 --
@@ -19,3 +20,7 @@ INSERT INTO public.comments (id, created_at, text, patient_id) VALUES (6, '2021-
 INSERT INTO public.comments (id, created_at, text, patient_id) VALUES (7, '2021-10-19 15:46:32.715000', 'Comment about Nick #4', 2);
 INSERT INTO public.comments (id, created_at, text, patient_id) VALUES (8, '2021-10-19 15:47:28.954000', 'Comment about Sara #1', 3);
 INSERT INTO public.comments (id, created_at, text, patient_id) VALUES (9, '2021-10-19 15:47:54.898000', 'Comment about Sara #2', 3);
+
+
+SELECT setval('patients_id_seq', max(id)) FROM patients;
+SELECT setval('comments_id_seq', max(id)) FROM comments;
