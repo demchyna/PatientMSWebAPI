@@ -26,8 +26,10 @@ public class CommentController {
 
     @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
-    public Comment create(@RequestBody CommentDto commentDto) {
-        return commentService.create(commentMapper.toEntity(commentDto));
+    public CommentDto create(@RequestBody CommentDto commentDto) {
+        return commentMapper.toDto(
+                commentService.create(
+                        commentMapper.toEntity(commentDto)));
     }
 
     @GetMapping("/{id}")
@@ -38,8 +40,10 @@ public class CommentController {
 
     @PutMapping("/")
     @ResponseStatus(code = HttpStatus.OK)
-    public Comment update(@RequestBody CommentDto commentDto) {
-        return commentService.update(commentMapper.toEntity(commentDto));
+    public CommentDto update(@RequestBody CommentDto commentDto) {
+        return commentMapper.toDto(
+                commentService.update(
+                        commentMapper.toEntity(commentDto)));
     }
 
     @DeleteMapping("/{id}")
