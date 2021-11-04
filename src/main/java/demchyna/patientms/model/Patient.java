@@ -42,6 +42,5 @@ public class Patient {
     private String address;
 
     @OneToMany(mappedBy = "patient", cascade = CascadeType.REMOVE)
-    @JsonIgnore
     private List<Comment> comments;
 }
