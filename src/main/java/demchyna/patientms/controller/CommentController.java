@@ -1,8 +1,8 @@
 package demchyna.patientms.controller;
 
+import demchyna.patientms.auditor.AuditLogger;
 import demchyna.patientms.dto.CommentDto;
 import demchyna.patientms.mapper.CommentMapper;
-import demchyna.patientms.model.Comment;
 import demchyna.patientms.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,6 +24,7 @@ public class CommentController {
         this.commentMapper = commentMapper;
     }
 
+    @AuditLogger
     @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
     public CommentDto create(@RequestBody CommentDto commentDto) {
@@ -32,12 +33,14 @@ public class CommentController {
                         commentMapper.toEntity(commentDto)));
     }
 
+    @AuditLogger
     @GetMapping("/{id}")
     @ResponseStatus(code = HttpStatus.OK)
     public CommentDto readById(@PathVariable long id) {
         return commentMapper.toDto(commentService.readById(id));
     }
 
+    @AuditLogger
     @PutMapping("/")
     @ResponseStatus(code = HttpStatus.OK)
     public CommentDto update(@RequestBody CommentDto commentDto) {
@@ -46,12 +49,14 @@ public class CommentController {
                         commentMapper.toEntity(commentDto)));
     }
 
+    @AuditLogger
     @DeleteMapping("/{id}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void delete(@PathVariable long id) {
         commentService.delete(id);
     }
 
+    @AuditLogger
     @GetMapping("/patients/{id}")
     @ResponseStatus(code = HttpStatus.OK)
     public List<CommentDto> readCommentsByPatientId(@PathVariable long id) {
